@@ -46,10 +46,8 @@ public class Application implements CommandLineRunner {
         	ObjectMapper mapper = new ObjectMapper();
         	
         	String jsonLine = response.getBody();        	
-        	//log.info(jsonLine);
         	JSONObject jsonObject = new JSONObject(jsonLine);
         	JSONObject data = jsonObject.getJSONObject("fields");
-        	//System.out.println(data.toString());
         	JSONArray attachment = (JSONArray) data.get("attachment");
         	for(int i = 0; i < attachment.length(); i++){
         		JSONObject attFile = (JSONObject)attachment.get(i);
