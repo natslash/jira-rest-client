@@ -1,11 +1,11 @@
 package es.gva.dgtic.jira.rest;
 
-import java.util.List;
+import org.json.JSONArray;
 
 public class JiraIssue {
 	private long id;
 	private String key;
-	private List fields;
+	private JSONArray fields;
 	
 	public JiraIssue(){
 		
@@ -27,15 +27,15 @@ public class JiraIssue {
 		this.id = id;
 	}
 
-	public List getFields() {
+	public JSONArray getFields() {
 		return fields;
 	}
 
-	public void setFields(List fields) {
+	public void setFields(JSONArray fields) {
 		this.fields = fields;
 	}
 	
-	/*@Override
+	@Override
     public String toString() {
 		return "JiraIssue{" +
                 "id='" + id + '\'' +
@@ -43,5 +43,4 @@ public class JiraIssue {
                 ", fields=" + fields +               
                 '}';
     }
-	*/
 }

@@ -1,7 +1,6 @@
 package es.gva.dgtic.jira.rest;
 
 import java.util.Base64;
-import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,9 +15,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -40,18 +36,16 @@ public class Application implements CommandLineRunner {
         HttpEntity<String> request = new HttpEntity<String>(headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response;
-        response = restTemplate.exchange("https://jira.excentia.es/rest/api/2/issue/OWASP-254?fields=attachment", HttpMethod.GET, request,String.class);
+        response = restTemplate.exchange("https://jira.excentia.es/rest/api/2/issue/OWASP-254", HttpMethod.GET, request,String.class);
         
         if(response.getStatusCode().equals(HttpStatus.OK)){
-        	ObjectMapper mapper = new ObjectMapper();
-        	
         	String jsonLine = response.getBody();        	
         	JSONObject jsonObject = new JSONObject(jsonLine);
         	JSONObject data = jsonObject.getJSONObject("fields");
         	JSONArray attachment = (JSONArray) data.get("attachment");
         	for(int i = 0; i < attachment.length(); i++){
         		JSONObject attFile = (JSONObject)attachment.get(i);
-        		System.out.println(attFile.get("content"));
+        		log.info(attFile.get("content").toString());
         	}
         }
     }
