@@ -6,10 +6,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import org.apache.commons.io.IOUtils;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * A utility that downloads a file from a URL.
@@ -27,25 +24,17 @@ public class HttpDownloadUtility {
 	 *            HttpEntity which contains authentication information
 	 * @throws IOException
 	 */
-	public static void downloadFile(String fileURL, HttpEntity<String> request) throws IOException {
+	public static void downloadFile(String fileName, ResponseEntity<byte[]> byteResponse) throws IOException {
 		
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<byte[]> fileResp = restTemplate.exchange(fileURL, HttpMethod.GET, request, byte[].class);
-
-		int responseCode = fileResp.getStatusCodeValue();
+		int responseCode = byteResponse.getStatusCodeValue();
 
 		// always check HTTP response code first
 		if (responseCode == HttpURLConnection.HTTP_OK) {
-			String fileName = "";
-
-			// extracts file name from URL
-			fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
-
 			System.out.println("fileName = " + fileName);
 
 			FileOutputStream output = new FileOutputStream(new File(fileName));
 
-			IOUtils.write(fileResp.getBody(), output);
+			IOUtils.write(byteResponse.getBody(), output);
 
 			System.out.println("File downloaded");
 		} else {

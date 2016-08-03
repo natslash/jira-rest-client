@@ -9,14 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
+import es.gva.dgtic.jira.request.Request;
+import es.gva.dgtic.jira.request.RequestImpl;
 import es.gva.dgtic.jira.utils.HttpDownloadUtility;
-import es.gva.dgtic.jira.utils.HttpRequestUtils;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -32,25 +31,26 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Override
-    public void run(String... args) throws Exception {
-    	HttpRequestUtils requestUtils = new HttpRequestUtils("ssubramanyam", "HexaVexa08");
-    	
-        HttpEntity<String> request = new HttpEntity<String>(requestUtils.getHeaders());
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response;
-        response = restTemplate.exchange("https://jira.excentia.es/rest/api/2/issue/OWASP-254", HttpMethod.GET, request,String.class);
-        
-        if(response.getStatusCode().equals(HttpStatus.OK)){
-        	String jsonLine = response.getBody();        	
-        	JSONObject jsonObject = new JSONObject(jsonLine);
-        	JSONObject data = jsonObject.getJSONObject("fields");
-        	JSONArray attachment = (JSONArray) data.get("attachment");
-        	for(int i = 0; i < attachment.length(); i++){
-        		JSONObject attFile = (JSONObject)attachment.get(i);
-        		log.info(attFile.get("content").toString());
-        		HttpDownloadUtility.downloadFile(attFile.get("content").toString(), request);
-        	}
-        }
-    }
+	public void run(String... args) throws Exception {
+
+		Request request = new RequestImpl("ssubramanyam", "HexaVexa08");
+		String webServiceUrl = "https://jira.excentia.es/rest/api/2/issue/OWASP-254";
+		ResponseEntity<String> response = request.getResponse(webServiceUrl, HttpMethod.GET);
+
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			String jsonLine = (String) response.getBody();
+			JSONObject jsonObject = new JSONObject(jsonLine);
+			JSONObject data = jsonObject.getJSONObject("fields");
+			JSONArray attachment = (JSONArray) data.get("attachment");
+			for (int i = 0; i < attachment.length(); i++) {
+				JSONObject attFile = (JSONObject) attachment.get(i);
+				log.info(attFile.get("content").toString());
+				String fileUrl = attFile.get("content").toString();
+				String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1, fileUrl.length());
+				ResponseEntity<byte[]> byteResponse = request.getResponseAsBytes(fileUrl, HttpMethod.GET);
+				HttpDownloadUtility.downloadFile(fileName, byteResponse);
+			}
+		}
+	}
 
 }
