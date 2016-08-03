@@ -3,10 +3,7 @@ package es.gva.dgtic.jira.utils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Base64;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpEntity;
@@ -21,20 +18,17 @@ import org.springframework.web.client.RestTemplate;
  *
  */
 public class HttpDownloadUtility {
-	private static final int BUFFER_SIZE = 4096;
-
 	/**
 	 * Downloads a file from a URL
 	 * 
 	 * @param fileURL
 	 *            HTTP URL of the file to be downloaded
-	 * @param saveDir
-	 *            path of the directory to save the file
+	 * @param request
+	 *            HttpEntity which contains authentication information
 	 * @throws IOException
 	 */
 	public static void downloadFile(String fileURL, HttpEntity<String> request) throws IOException {
-		URL url = new URL(fileURL);
-
+		
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<byte[]> fileResp = restTemplate.exchange(fileURL, HttpMethod.GET, request, byte[].class);
 

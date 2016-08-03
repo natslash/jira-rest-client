@@ -8,10 +8,14 @@ import org.springframework.http.HttpHeaders;
 
 public class HttpRequestUtils {
 
+	private String plainCreds;
+	private String base64Creds;
 	private HttpHeaders headers;
 	private HttpEntity<String> request;
 	
 	public HttpRequestUtils(String userName, String password){
+		plainCreds = userName + ":" + password;
+		setBase64Creds();
 		setHeaders(userName, password);
 		setRequest();
 	}
@@ -23,18 +27,7 @@ public class HttpRequestUtils {
 	
 	public void setHeaders(String userName, String password) {
 		
-		//prepare basic authentication String using username and password
-		String plainCreds = userName + ":" + userName;
-		
-		//Encodes this plainCreds into a sequence of bytes 
-		byte[] plainCredsBytes = plainCreds.getBytes();
-		
-		//Encodes all bytes from "plainCredsBytes" byte array into a newly-allocated byte array 
-		//using the Base64 encoding.
-		byte[] base64CredsBytes = Base64.getEncoder().encode(plainCredsBytes);
-		String base64Creds = new String(base64CredsBytes);
-		
-		HttpHeaders headers = new HttpHeaders();
+		headers = new HttpHeaders();
 		
 		//Add the encoded creds header value under the name "Authorization".
         headers.add("Authorization", "Basic " + base64Creds);              
@@ -46,5 +39,15 @@ public class HttpRequestUtils {
 
 	public void setRequest() {
 		this.request = new HttpEntity<String>(headers);
+	}
+
+	public String getBase64Creds() {
+		return base64Creds;
+	}
+
+	public void setBase64Creds() {
+		byte[] plainCredsBytes = plainCreds.getBytes();
+		byte[] base64CredsBytes = Base64.getEncoder().encode(plainCredsBytes);
+		base64Creds = new String(base64CredsBytes);
 	}
 }

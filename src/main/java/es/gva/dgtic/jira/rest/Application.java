@@ -10,11 +10,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import es.gva.dgtic.jira.utils.HttpDownloadUtility;
+import es.gva.dgtic.jira.utils.HttpRequestUtils;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -31,9 +33,9 @@ public class Application implements CommandLineRunner {
 
 	@Override
     public void run(String... args) throws Exception {
-    	HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Basic " + base64Creds);
-        HttpEntity<String> request = new HttpEntity<String>(headers);
+    	HttpRequestUtils requestUtils = new HttpRequestUtils("ssubramanyam", "HexaVexa08");
+    	
+        HttpEntity<String> request = new HttpEntity<String>(requestUtils.getHeaders());
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response;
         response = restTemplate.exchange("https://jira.excentia.es/rest/api/2/issue/OWASP-254", HttpMethod.GET, request,String.class);
@@ -46,6 +48,7 @@ public class Application implements CommandLineRunner {
         	for(int i = 0; i < attachment.length(); i++){
         		JSONObject attFile = (JSONObject)attachment.get(i);
         		log.info(attFile.get("content").toString());
+        		HttpDownloadUtility.downloadFile(attFile.get("content").toString(), request);
         	}
         }
     }
