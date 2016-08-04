@@ -15,7 +15,7 @@ import es.gva.dgtic.jira.rest.Application;
 /**
  * A utility that downloads a file from a URL.
  * 
- * @author www.codejava.net
+ * @author @author shashi
  *
  */
 public class HttpDownloadUtility {
@@ -37,8 +37,11 @@ public class HttpDownloadUtility {
 		// Check HTTP response code first
 		if (responseCode == HttpURLConnection.HTTP_OK) {
 			System.out.println("fileName = " + fileName);
-
-			FileOutputStream output = new FileOutputStream(new File(fileName));
+			
+			File dir = new File("a_desplegar");
+			dir.mkdir();
+			String saveFilePath = "a_desplegar"+ File.separator + fileName;
+			FileOutputStream output = new FileOutputStream(new File(saveFilePath));
 
 			IOUtils.write(byteResponse.getBody(), output);
 

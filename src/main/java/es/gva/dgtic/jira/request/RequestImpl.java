@@ -22,7 +22,7 @@ public class RequestImpl implements Request {
 		restTemplate = new RestTemplate();
 	}	
 
-	public void setBase64Creds(String userName, String password) {
+	private void setBase64Creds(String userName, String password) {
 		String plainCreds = userName + ":" + password;
 		byte[] plainCredsBytes = plainCreds.getBytes();
 		byte[] base64CredsBytes = Base64.getEncoder().encode(plainCredsBytes);
@@ -33,7 +33,7 @@ public class RequestImpl implements Request {
 		return headers;
 	}
 
-	public void setHeaders() {
+	private void setHeaders() {
 		headers = new HttpHeaders();
 		// Add the encoded creds header value under the name "Authorization".
 		headers.add("Authorization", "Basic " + base64Creds);
@@ -43,7 +43,7 @@ public class RequestImpl implements Request {
 		return request;
 	}
 
-	public void setRequest() {
+	private void setRequest() {
 		this.request = new HttpEntity<String>(headers);
 	}
 	
