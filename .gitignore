@@ -2,6 +2,7 @@
 /build/
 /bin/
 /target/
+/Servers/
  
 # OS Files #
 .DS_Store
@@ -60,6 +61,7 @@ local.properties
 /src/main/resources/rebel.xml
 # External tool builders
 .externalToolBuilders/
+Servers/**
  
 # Locally stored "Eclipse launch configurations"
 *.launch
