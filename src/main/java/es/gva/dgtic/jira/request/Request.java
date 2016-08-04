@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface Request {
 
-	ResponseEntity<String> getResponse(String url, HttpMethod method);
+	public <T> ResponseEntity<T> getResponse(String url, HttpMethod method, Class<T> responseType);
 	
-	ResponseEntity<byte[]> getResponseAsBytes(String url, HttpMethod method);
 }

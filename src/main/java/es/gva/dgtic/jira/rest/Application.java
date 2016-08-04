@@ -27,7 +27,7 @@ public class Application implements CommandLineRunner {
 	String base64Creds = new String(base64CredsBytes);
 
 	public static void main(String args[]) {
-		SpringApplication.run(Application.class);
+		SpringApplication.run(Application.class).close();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class Application implements CommandLineRunner {
 
 		Request request = new RequestImpl("ssubramanyam", "HexaVexa08");
 		String webServiceUrl = "https://jira.excentia.es/rest/api/2/issue/OWASP-254";
-		ResponseEntity<String> response = request.getResponse(webServiceUrl, HttpMethod.GET);
+		ResponseEntity<String> response = request.getResponse(webServiceUrl, HttpMethod.GET, String.class);
 
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			String jsonLine = (String) response.getBody();
@@ -47,7 +47,7 @@ public class Application implements CommandLineRunner {
 				log.info(attFile.get("content").toString());
 				String fileUrl = attFile.get("content").toString();
 				String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1, fileUrl.length());
-				ResponseEntity<byte[]> byteResponse = request.getResponseAsBytes(fileUrl, HttpMethod.GET);
+				ResponseEntity<byte[]> byteResponse = request.getResponse(fileUrl, HttpMethod.GET, byte[].class);
 				HttpDownloadUtility.downloadFile(fileName, byteResponse);
 			}
 		}

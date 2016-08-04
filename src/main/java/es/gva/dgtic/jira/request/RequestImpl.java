@@ -48,12 +48,8 @@ public class RequestImpl implements Request {
 	}
 	
 	@Override
-	public ResponseEntity<String> getResponse(String url, HttpMethod method) {
-		return restTemplate.exchange(url, method, request, String.class);
+	public <T> ResponseEntity<T> getResponse(String url, HttpMethod method, Class<T> responseType) {
+		return restTemplate.exchange(url, method, request, responseType);
 	}
-
-	@Override
-	public ResponseEntity<byte[]> getResponseAsBytes(String url, HttpMethod method) {
-		return restTemplate.exchange(url, method, request, byte[].class);
-	}
+	
 }

@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+
+import es.gva.dgtic.jira.rest.Application;
 
 /**
  * A utility that downloads a file from a URL.
@@ -15,6 +19,8 @@ import org.springframework.http.ResponseEntity;
  *
  */
 public class HttpDownloadUtility {
+	
+	private static final Logger log = LoggerFactory.getLogger(HttpDownloadUtility.class);
 	/**
 	 * Downloads a file from a URL
 	 * 
@@ -28,7 +34,7 @@ public class HttpDownloadUtility {
 		
 		int responseCode = byteResponse.getStatusCodeValue();
 
-		// always check HTTP response code first
+		// Check HTTP response code first
 		if (responseCode == HttpURLConnection.HTTP_OK) {
 			System.out.println("fileName = " + fileName);
 
@@ -36,9 +42,9 @@ public class HttpDownloadUtility {
 
 			IOUtils.write(byteResponse.getBody(), output);
 
-			System.out.println("File downloaded");
+			log.info("File downloaded");
 		} else {
-			System.out.println("No file to download. Server replied HTTP code: " + responseCode);
+			log.info("No file to download. Server replied with HTTP code: " + responseCode);
 		}
 	}
 }
