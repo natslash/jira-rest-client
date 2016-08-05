@@ -10,8 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 
-import es.gva.dgtic.jira.rest.Application;
-
 /**
  * A utility that downloads a file from a URL.
  * 
