@@ -45,7 +45,7 @@ public class RequestImplTest {
 	public void testGetResponse() {
 		RequestImpl reqImpl = new RequestImpl("xxxx", "yyyy");
 		ResponseEntity<String> resp = reqImpl.getResponse("http://www.gmail.com", HttpMethod.GET, String.class);
-		assertEquals(301,resp.getStatusCodeValue());
+		assertEquals(301,Integer.parseInt(resp.getStatusCode().toString()));
 	}
 
 }

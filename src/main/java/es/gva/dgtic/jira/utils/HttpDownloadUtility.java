@@ -30,7 +30,7 @@ public class HttpDownloadUtility {
 	 */
 	public static void downloadFile(String fileName, ResponseEntity<byte[]> byteResponse) throws IOException {
 		
-		int responseCode = byteResponse.getStatusCodeValue();
+		int responseCode = Integer.parseInt(byteResponse.getStatusCode().toString());		
 
 		// Check HTTP response code first
 		if (responseCode == HttpURLConnection.HTTP_OK) {

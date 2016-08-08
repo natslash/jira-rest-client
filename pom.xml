@@ -2,16 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+	
+	<parent>
+		<groupId>es.gva.dgtic</groupId>
+		<artifactId>super-pom</artifactId>
+		<version>01.00.00</version>
+	</parent>
+	
 	<groupId>es.gva.dgtic</groupId>
 	<artifactId>jira-consuming-rest</artifactId>
 	<version>0.1.0</version>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.0.RELEASE</version>
-	</parent>
 
 	<properties>
 		<java.version>1.8</java.version>

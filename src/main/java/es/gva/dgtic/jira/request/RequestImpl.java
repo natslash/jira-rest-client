@@ -23,9 +23,16 @@ public class RequestImpl implements Request {
 	}	
 
 	private void setBase64Creds(String userName, String password) {
+		
+		//Concatenate username & password
 		String plainCreds = userName + ":" + password;
+		//get Byte[] of plain string
 		byte[] plainCredsBytes = plainCreds.getBytes();
+		
+		//Encode the byes
 		byte[] base64CredsBytes = Base64.getEncoder().encode(plainCredsBytes);
+		
+		//set base64Creds with encoded string
 		base64Creds = new String(base64CredsBytes);
 	}
 
