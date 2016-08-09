@@ -40,7 +40,8 @@ public class HttpDownloadUtility {
 			try{
 				dir.mkdir();
 			}catch(SecurityException se){
-				LOGGER.error(se.getLocalizedMessage());
+				LOGGER.info(se.getLocalizedMessage());
+				throw se;
 			}
 			String saveFilePath = "a_desplegar"+ File.separator + fileName;
 			FileOutputStream output = new FileOutputStream(new File(saveFilePath));
