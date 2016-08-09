@@ -50,7 +50,7 @@ public class RequestImplTest {
     ResponseEntity<String> resp = null;
 
     try {
-      resp = reqImpl.getResponse("http://jenkins.gva.es", HttpMethod.GET, String.class);
+      resp = reqImpl.getResponse("https://jira.excentia.es/secure/Dashboard.jspa", HttpMethod.GET, String.class);
       int code = resp.getStatusCode().value();
       System.out.println(code);
     } catch (HttpClientErrorException he) {

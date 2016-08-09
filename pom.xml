@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>es.gva.dgtic</groupId>
-		<artifactId>super-pom</artifactId>
-		<version>01.00.00</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.0.RELEASE</version>
 	</parent>
 
 	<groupId>es.gva.dgtic</groupId>
