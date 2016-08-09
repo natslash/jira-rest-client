@@ -51,6 +51,8 @@ public class RequestImplTest {
 		
 		try{
 			resp = reqImpl.getResponse("http://jenkins.gva.es", HttpMethod.GET, String.class);
+			int code = resp.getStatusCode().value();
+			System.out.println(code);
 		}catch(HttpClientErrorException he){
 			exceptionThrown = true;			
 		}

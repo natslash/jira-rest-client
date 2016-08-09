@@ -36,16 +36,20 @@ public class HttpDownloadUtility {
 		if (responseCode == HttpURLConnection.HTTP_OK) {
 			LOGGER.info("fileName = " + fileName);
 			
+			//Create new directory called "a_desplegar"
 			File dir = new File("a_desplegar");
 			try{
+				//Create the directory (might throw permissions exception)
 				dir.mkdir();
 			}catch(SecurityException se){
 				LOGGER.info(se.getLocalizedMessage());
 				throw se;
 			}
+			//Get the file name from the URL
 			String saveFilePath = "a_desplegar"+ File.separator + fileName;
 			FileOutputStream output = new FileOutputStream(new File(saveFilePath));
 
+			//Write the contents to the file
 			IOUtils.write(byteResponse.getBody(), output);
 
 			LOGGER.info("File downloaded");
