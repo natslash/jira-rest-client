@@ -3,11 +3,13 @@
 /bin/
 /target/
 /Servers/
+
  
 # OS Files #
 .DS_Store
  
 *.class
+spring.xml
  
 # Package Files #
 *.jar
