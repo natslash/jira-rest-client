@@ -31,7 +31,7 @@ public class HttpDownloadUtility {
    */
   public static void downloadFile(String fileName, ResponseEntity<byte[]> byteResponse) throws IOException {
 
-    int responseCode = Integer.parseInt(byteResponse.getStatusCode().toString());
+    int responseCode = byteResponse.getStatusCode().value();
 
     // Check HTTP response code first
     if (responseCode == HttpURLConnection.HTTP_OK) {
