@@ -20,10 +20,17 @@ public class Application implements CommandLineRunner {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		SpringApplication.run(Application.class).close();
 	}
 
+	/**
+	 * @param args
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 
