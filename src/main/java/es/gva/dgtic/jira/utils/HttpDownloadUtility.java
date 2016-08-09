@@ -35,6 +35,7 @@ public class HttpDownloadUtility {
 
     // Check HTTP response code first
     if (responseCode == HttpURLConnection.HTTP_OK) {
+      //Log file name taken from the url
       LOGGER.info("fileName = " + fileName);
 
       // Create new directory called "a_desplegar"
@@ -43,6 +44,7 @@ public class HttpDownloadUtility {
         // Create the directory (might throw permissions exception)
         dir.mkdir();
       } catch (SecurityException se) {
+        //Throw exception and log the message
         LOGGER.info(se.getLocalizedMessage());
         throw se;
       }
@@ -54,9 +56,10 @@ public class HttpDownloadUtility {
 
       // Write the contents to the file
       IOUtils.write(byteResponse.getBody(), output);
-
+      //File download successful
       LOGGER.info("File downloaded");
     } else {
+      //Http request error log the message
       LOGGER.info("No file to download. Server replied with HTTP code: " + responseCode);
     }
   }

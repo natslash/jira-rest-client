@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.http.HttpStatus;
@@ -22,6 +21,7 @@ public class HttpDownloadUtilityTest {
     String fileName = "filename.jar";
     
     
+    @SuppressWarnings("unchecked")
     ResponseEntity<byte[]> byteResponse = mock(ResponseEntity.class);
     HttpStatus status = mock(HttpStatus.class);
     
@@ -34,6 +34,7 @@ public class HttpDownloadUtilityTest {
     String fileName = "filename.jar";
     
     
+    @SuppressWarnings("unchecked")
     ResponseEntity<byte[]> byteResponse = mock(ResponseEntity.class);
     HttpStatus status = mock(HttpStatus.class);
     
