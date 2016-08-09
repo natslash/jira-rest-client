@@ -59,7 +59,7 @@ public class Application implements CommandLineRunner {
 			//Convert String to JSON object
 			JSONObject jsonObject = new JSONObject(jsonLine);
 			JSONObject data = jsonObject.getJSONObject("fields");
-			//Get the field value attatchment
+			//Get the field value attachment
 			JSONArray attachment = (JSONArray) data.get("attachment");
 			for (int i = 0; i < attachment.length(); i++) {
 				//Loop through each attachment
