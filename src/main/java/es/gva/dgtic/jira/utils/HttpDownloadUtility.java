@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
  */
 public class HttpDownloadUtility {
 	
-	private static final Logger log = LoggerFactory.getLogger(HttpDownloadUtility.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HttpDownloadUtility.class);
 	/**
 	 * Downloads a file from a URL
 	 * 
@@ -34,18 +34,22 @@ public class HttpDownloadUtility {
 
 		// Check HTTP response code first
 		if (responseCode == HttpURLConnection.HTTP_OK) {
-			System.out.println("fileName = " + fileName);
+			LOGGER.info("fileName = " + fileName);
 			
 			File dir = new File("a_desplegar");
-			dir.mkdir();
+			try{
+				dir.mkdir();
+			}catch(SecurityException se){
+				LOGGER.error(se.getLocalizedMessage());
+			}
 			String saveFilePath = "a_desplegar"+ File.separator + fileName;
 			FileOutputStream output = new FileOutputStream(new File(saveFilePath));
 
 			IOUtils.write(byteResponse.getBody(), output);
 
-			log.info("File downloaded");
+			LOGGER.info("File downloaded");
 		} else {
-			log.info("No file to download. Server replied with HTTP code: " + responseCode);
+			LOGGER.info("No file to download. Server replied with HTTP code: " + responseCode);
 		}
 	}
 }

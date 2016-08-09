@@ -1,12 +1,14 @@
 package es.gva.dgtic.jira.request.ut;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 
 import es.gva.dgtic.jira.request.RequestImpl;
 
@@ -41,11 +43,18 @@ public class RequestImplTest {
 		assertTrue(requestString.getHeaders().containsKey("Authorization"));
 	}
 
-	@Test
+	@Test 
 	public void testGetResponse() {
+		boolean exceptionThrown = false;
 		RequestImpl reqImpl = new RequestImpl("xxxx", "yyyy");
-		ResponseEntity<String> resp = reqImpl.getResponse("http://www.gmail.com", HttpMethod.GET, String.class);
-		assertEquals(301,Integer.parseInt(resp.getStatusCode().toString()));
+		ResponseEntity<String> resp = null;
+		
+		try{
+			resp = reqImpl.getResponse("http://jenkins.gva.es", HttpMethod.GET, String.class);
+		}catch(HttpClientErrorException he){
+			exceptionThrown = true;			
+		}
+		assertTrue(exceptionThrown);
 	}
 
 }
