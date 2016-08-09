@@ -22,10 +22,10 @@ public class HttpDownloadUtility {
 	/**
 	 * Downloads a file from a URL
 	 * 
-	 * @param fileURL
-	 *            HTTP URL of the file to be downloaded
-	 * @param request
-	 *            HttpEntity which contains authentication information
+	 * @param fileName
+	 *            Name of the file to be downloaded
+	 * @param byteResponse
+	 *            byte Response obtained
 	 * @throws IOException
 	 */
 	public static void downloadFile(String fileName, ResponseEntity<byte[]> byteResponse) throws IOException {
@@ -47,6 +47,8 @@ public class HttpDownloadUtility {
 			}
 			//Get the file name from the URL
 			String saveFilePath = "a_desplegar"+ File.separator + fileName;
+			
+			//Open output stream
 			FileOutputStream output = new FileOutputStream(new File(saveFilePath));
 
 			//Write the contents to the file

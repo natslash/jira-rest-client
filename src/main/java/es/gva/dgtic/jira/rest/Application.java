@@ -15,6 +15,12 @@ import es.gva.dgtic.jira.request.Request;
 import es.gva.dgtic.jira.request.RequestImpl;
 import es.gva.dgtic.jira.utils.HttpDownloadUtility;
 
+/**
+ * Application entry point 
+ *  
+ * @author shashi
+ *
+ */
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -62,7 +68,7 @@ public class Application implements CommandLineRunner {
 				String fileUrl = attFile.get("content").toString();
 				
 				//Parse the URL to get the file name
-				String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1, fileUrl.length());
+				String fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1, fileUrl.length());
 				ResponseEntity<byte[]> byteResponse = request.getResponse(fileUrl, HttpMethod.GET, byte[].class);
 				
 				//Call utility method to store the content to a file
