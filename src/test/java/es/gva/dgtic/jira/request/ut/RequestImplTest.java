@@ -8,7 +8,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 
 import es.gva.dgtic.jira.request.RequestImpl;
 
@@ -50,10 +49,10 @@ public class RequestImplTest {
     ResponseEntity<String> resp = null;
 
     try {
-      resp = reqImpl.getResponse("https://jira.excentia.es/secure/Dashboard.jspa", HttpMethod.GET, String.class);
+      resp = reqImpl.getResponse("http://localhost", HttpMethod.GET, String.class);
       int code = resp.getStatusCode().value();
       System.out.println(code);
-    } catch (HttpClientErrorException he) {
+    } catch (Exception e) {
       exceptionThrown = true;
     }
     assertTrue(exceptionThrown);
