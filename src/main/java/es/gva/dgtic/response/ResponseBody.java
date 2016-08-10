@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
  *
  */
 @FunctionalInterface
-public interface Response {
+public interface ResponseBody {
 
   /**
    * This method takes response entity as parameter and returns JSON object, File

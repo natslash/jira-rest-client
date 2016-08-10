@@ -14,9 +14,9 @@ import com.google.gson.JsonParser;
  * @author shashi
  *
  */
-public class JsonResponse implements Response {
+public class JsonResponseBody implements ResponseBody {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(JsonResponse.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(JsonResponseBody.class);
 
   /**
    * Returns JSON object parsed from responseBody accepts only JSON Media type
