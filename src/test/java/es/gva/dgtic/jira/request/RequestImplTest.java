@@ -1,4 +1,4 @@
-package es.gva.dgtic.jira.request.ut;
+package es.gva.dgtic.jira.request;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
