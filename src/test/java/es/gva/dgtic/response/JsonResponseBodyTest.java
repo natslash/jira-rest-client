@@ -27,8 +27,8 @@ public class JsonResponseBodyTest {
     when(response.getBody()).thenReturn(jsonString);
     when(response.getHeaders()).thenReturn(header);
     when(header.getContentType()).thenReturn(MediaType.APPLICATION_JSON);
-    JsonResponseBody jresp = new JsonResponseBody();
-    JsonObject obj = jresp.getResponseObject(response);
+    JsonResponseBody jresp = new JsonResponseBody(response);
+    JsonObject obj = jresp.getResponseObject();
     JsonObject jData = obj.getAsJsonObject("fields");
     assertNotNull("Data is null",jData);
   }
@@ -41,8 +41,8 @@ public class JsonResponseBodyTest {
     when(response.getBody()).thenReturn(jsonString);
     when(response.getHeaders()).thenReturn(header);
     when(header.getContentType()).thenReturn(MediaType.APPLICATION_OCTET_STREAM);
-    JsonResponseBody jresp = new JsonResponseBody();
-    assertNull("Response is not null", jresp.getResponseObject(response));
+    JsonResponseBody jresp = new JsonResponseBody(response);
+    assertNull("Response is not null", jresp.getResponseObject());
   }
 
 }

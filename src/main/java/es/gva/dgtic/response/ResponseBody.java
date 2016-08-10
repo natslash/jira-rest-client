@@ -1,7 +1,5 @@
 package es.gva.dgtic.response;
 
-import org.springframework.http.ResponseEntity;
-
 /**
  * 
  * @author shashi
@@ -16,5 +14,5 @@ public interface ResponseBody {
    * @param response
    * @return json, file
    */
-  <T> Object getResponseObject(ResponseEntity<T> response);
+  Object getResponseObject();
 }
