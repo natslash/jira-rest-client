@@ -18,14 +18,17 @@ public class JsonResponse implements Response {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(JsonResponse.class);
 
+  /**
+   * Returns JSON object parsed from responseBody accepts only JSON Media type
+   */
   @Override
   public <T> JsonObject getResponseObject(ResponseEntity<T> response) {
     
     JsonObject jsonObject = null;
     MediaType mediaType = response.getHeaders().getContentType();
     
-    //Media type is json
-    if (mediaType.equals(MediaType.APPLICATION_JSON_UTF8)) {
+    //Media type is JSON
+    if (mediaType.equals(MediaType.APPLICATION_JSON)) {
       // Convert response body to JSON object
       String responseBody = response.getBody().toString();
       JsonParser parser = new JsonParser();

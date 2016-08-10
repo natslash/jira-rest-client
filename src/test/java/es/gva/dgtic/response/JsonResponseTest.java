@@ -26,7 +26,7 @@ public class JsonResponseTest {
     HttpHeaders header = mock(HttpHeaders.class);
     when(response.getBody()).thenReturn(jsonString);
     when(response.getHeaders()).thenReturn(header);
-    when(header.getContentType()).thenReturn(MediaType.APPLICATION_JSON_UTF8);
+    when(header.getContentType()).thenReturn(MediaType.APPLICATION_JSON);
     JsonResponse jresp = new JsonResponse();
     JsonObject obj = jresp.getResponseObject(response);
     JsonObject jData = obj.getAsJsonObject("fields");
