@@ -40,7 +40,7 @@ Desktop.ini
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
- 
+.springBeans 
  
 ######################
 # Eclipse
@@ -67,6 +67,7 @@ Servers/**
  
 # Locally stored "Eclipse launch configurations"
 *.launch
+.springBeans
  
 # CDT-specific
 .cproject

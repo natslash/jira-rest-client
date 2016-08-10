@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
  * @author shashi
  *
  */
+@FunctionalInterface
 public interface Request {
 
   /**
