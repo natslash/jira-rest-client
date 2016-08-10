@@ -16,30 +16,30 @@ public class RequestImplTest {
   @Test
   public void testRequestImplNullTest() {
     RequestImpl reqImpl = new RequestImpl(null, null);
-    assertNotNull(reqImpl);
-    assertNotNull(reqImpl.getHeaders());
-    assertNotNull(reqImpl.getRequest());
+    assertNotNull("Request is null", reqImpl);
+    assertNotNull("Header is null", reqImpl.getHeaders());
+    assertNotNull("Request is null", reqImpl.getRequest());
   }
 
   @Test
   public void testGetHeadersAuthorizationTest() {
     RequestImpl reqImpl = new RequestImpl("xxxx", "yyyy");
     HttpHeaders headers = reqImpl.getHeaders();
-    assertNotNull(headers.get("Authorization"));
+    assertNotNull("Authorization is null", headers.get("Authorization"));
   }
 
   @Test
   public void testGetHeadersNullCredsTest() {
     RequestImpl reqImpl = new RequestImpl(null, null);
     HttpHeaders headers = reqImpl.getHeaders();
-    assertNotNull(headers);
+    assertNotNull("Header is null", headers);
   }
 
   @Test
   public void testGetRequest() {
     RequestImpl reqImpl = new RequestImpl("xxxx", "yyyy");
     HttpEntity<String> requestString = reqImpl.getRequest();
-    assertTrue(requestString.getHeaders().containsKey("Authorization"));
+    assertTrue("Header doens't contain authoirzation key", requestString.getHeaders().containsKey("Authorization"));
   }
 
   @Test
@@ -55,7 +55,7 @@ public class RequestImplTest {
     } catch (Exception e) {
       exceptionThrown = true;
     }
-    assertTrue(exceptionThrown);
+    assertTrue("Exception is not thrown", exceptionThrown);
   }
 
 }

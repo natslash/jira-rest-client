@@ -56,7 +56,7 @@ public class Application implements CommandLineRunner {
     // If the response is OK, proceed
     if (response.getStatusCode().equals(HttpStatus.OK)) {
       // get JSON response as String
-      String jsonLine = (String) response.getBody();
+      String jsonLine = response.getBody();
 
       // Convert String to JSON object
       JSONObject jsonObject = new JSONObject(jsonLine);

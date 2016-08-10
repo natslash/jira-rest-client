@@ -16,5 +16,5 @@ public interface Response {
    * @param response
    * @return json, file
    */
-  public <T> Object getResponseObject(ResponseEntity<T> response);
+  <T> Object getResponseObject(ResponseEntity<T> response);
 }

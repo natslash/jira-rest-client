@@ -30,7 +30,7 @@ public class JsonResponseTest {
     JsonResponse jresp = new JsonResponse();
     JsonObject obj = jresp.getResponseObject(response);
     JsonObject jData = obj.getAsJsonObject("fields");
-    assertNotNull(jData);
+    assertNotNull("Data is null",jData);
   }
   
   @Test
@@ -42,7 +42,7 @@ public class JsonResponseTest {
     when(response.getHeaders()).thenReturn(header);
     when(header.getContentType()).thenReturn(MediaType.APPLICATION_OCTET_STREAM);
     JsonResponse jresp = new JsonResponse();
-    assertNull(jresp.getResponseObject(response));
+    assertNull("Response is not null", jresp.getResponseObject(response));
   }
 
 }
