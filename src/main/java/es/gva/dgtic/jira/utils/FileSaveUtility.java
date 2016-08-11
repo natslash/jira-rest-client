@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
  * @author @author shashi
  *
  */
-public class FileSaveUtility {
+public final class FileSaveUtility {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FileSaveUtility.class);
   
