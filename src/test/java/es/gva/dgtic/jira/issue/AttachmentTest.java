@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class AttachmentTest {
     Fields fields = gson.fromJson(jData, Fields.class);
     List<Attachment> attList = fields.getAttachment();
     System.out.println(attList.size());
+    Attachment newAttachment = attList.get(0);
+    List<Attachment> newList = new ArrayList<Attachment>();
+    newList.add(newAttachment);
+    
     Iterator<Attachment> iterator = attList.iterator();
     
     while(iterator.hasNext()){
@@ -63,6 +68,8 @@ public class AttachmentTest {
       att.setSelf("self");
       att.setSize(1);
     }
+    
+    fields.setAttachment(newList);
   }
 
 }

@@ -41,7 +41,7 @@ public class JsonResponseBody implements ResponseBody {
 	/**
 	 * Gets response Body and creates a JSON object
 	 */
-	public void setJsonObject() {
+	private void setJsonObject() {
 		MediaType mediaType = response.getHeaders().getContentType();
 
 		// Media type is JSON
