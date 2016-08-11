@@ -1,7 +1,6 @@
 package es.gva.dgtic.jira.issue;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
@@ -41,31 +40,17 @@ public class AttachmentTest {
 
     while (iterator.hasNext()) {
       Attachment att = iterator.next();
-
-      assertTrue("Self value is not equal", att.getSelf().length() > 0);
-      assertEquals("File Names not equal", "sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar", att.getFilename());
-      assertNotNull("Name is null", att.getAuthor().getName());
+      
+      assertEquals("File Names not equal", "sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar", att.getFilename());      
       assertEquals("MimeType is not x-java-archive", "application/x-java-archive", att.getMimeType());
       assertTrue("Attachment size is zero", att.getSize() > 0);
-      assertTrue("Id is not the same as expected", att.getId().length() > 0);
-      assertTrue("Date created is null", att.getCreated().equals("2016-08-04T09:13:58.000+0200"));
-      assertTrue("content is not the same",
-          att.getContent().equals("https://jira.excentia.es/secure/attachment/41512/sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar"));
-
-      Author auth = att.getAuthor();
-      auth.setEmailAddress("g@g.com");
-      auth.setKey("123");
-      auth.setName("Shashi");
-      auth.setSelf("new");
-      auth.setTimeZone("CEST");
-
-      att.setAuthor(auth);
-      att.setContent("content");
-      att.setCreated("creted");
+      assertTrue("Id is not the same as expected", att.getId().length() > 0);      
+      assertTrue("content is not the same",att.getContent().contains("sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar"));
+      
+      att.setContent("content");      
       att.setFilename("newFile");
       att.setId("new");
-      att.setMimeType("appliction");
-      att.setSelf("self");
+      att.setMimeType("appliction");      
       att.setSize(1);
     }
 

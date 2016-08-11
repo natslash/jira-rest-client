@@ -5,54 +5,32 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 
+ * Attachments list in the issue
  * @author shashi
  *
  */
 @Generated("org.jsonschema2pojo")
 public class Attachment {
 
-  @SerializedName("self")
-  @Expose
-  private String self;
   @SerializedName("id")
   @Expose
   private String id;
+  
   @SerializedName("filename")
   @Expose
-  private String filename;
-  @SerializedName("author")
-  @Expose
-  private Author author;
-  @SerializedName("created")
-  @Expose
-  private String created;
+  private String filename;  
+  
   @SerializedName("size")
   @Expose
   private Integer size;
+  
   @SerializedName("mimeType")
   @Expose
   private String mimeType;
+  
   @SerializedName("content")
   @Expose
   private String content;
-
-  /**
-   * 
-   * @return The self
-   */
-  public String getSelf() {
-    return self;
-  }
-
-  /**
-   * 
-   * @param self
-   *          The self
-   */
-  public void setSelf(String self) {
-    this.self = self;
-  }
 
   /**
    * 
@@ -86,40 +64,6 @@ public class Attachment {
    */
   public void setFilename(String filename) {
     this.filename = filename;
-  }
-
-  /**
-   * 
-   * @return The author
-   */
-  public Author getAuthor() {
-    return author;
-  }
-
-  /**
-   * 
-   * @param author
-   *          The author
-   */
-  public void setAuthor(Author author) {
-    this.author = author;
-  }
-
-  /**
-   * 
-   * @return The created
-   */
-  public String getCreated() {
-    return created;
-  }
-
-  /**
-   * 
-   * @param created
-   *          The created
-   */
-  public void setCreated(String created) {
-    this.created = created;
   }
 
   /**

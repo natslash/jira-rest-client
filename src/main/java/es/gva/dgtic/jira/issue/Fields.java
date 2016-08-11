@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * 
+ * Fields in JIRA issue
  * @author shashi
  *
  */

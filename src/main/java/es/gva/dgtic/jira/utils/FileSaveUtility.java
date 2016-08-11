@@ -16,9 +16,9 @@ import org.springframework.http.ResponseEntity;
  * @author @author shashi
  *
  */
-public class HttpDownloadUtility {
+public class FileSaveUtility {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(HttpDownloadUtility.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(FileSaveUtility.class);
 
   /**
    * Downloads a file from a URL
@@ -29,7 +29,7 @@ public class HttpDownloadUtility {
    *          byte Response obtained
    * @throws IOException
    */
-  public static void downloadFile(String fileName, ResponseEntity<byte[]> byteResponse) throws IOException {
+  public static void saveFile(String fileName, ResponseEntity<byte[]> byteResponse) throws IOException {
 
     int responseCode = byteResponse.getStatusCode().value();
 

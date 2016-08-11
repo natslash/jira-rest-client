@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( { HttpStatus.class })
-public class HttpDownloadUtilityTest {
+public class FileSaveUtilityTest {
 
   @Test  
   public void testDownloadFileStatusNotOK() throws IOException {
@@ -26,7 +26,7 @@ public class HttpDownloadUtilityTest {
     HttpStatus status = mock(HttpStatus.class);
     
     when(byteResponse.getStatusCode()).thenReturn(status);    
-    HttpDownloadUtility.downloadFile(fileName, byteResponse);
+    FileSaveUtility.saveFile(fileName, byteResponse);
   }
   
   @Test  
@@ -40,7 +40,7 @@ public class HttpDownloadUtilityTest {
     
     when(byteResponse.getStatusCode()).thenReturn(status); 
     when(status.value()).thenReturn(200);
-    HttpDownloadUtility.downloadFile(fileName, byteResponse);
+    FileSaveUtility.saveFile(fileName, byteResponse);
   }
 
 }
