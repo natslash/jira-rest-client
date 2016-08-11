@@ -70,9 +70,8 @@ public class Application implements CommandLineRunner {
       
       //Get Json object "fields"
       JsonObject jsonBody = (JsonObject) jsonResponse.getResponseBody();
-      //JsonObject fieldsJson = jsonBody.getAsJsonObject("fields");
-      Gson gson = new Gson();
       
+      Gson gson = new Gson();      
       //Convert JSON to Fields POJO
       Example issue = gson.fromJson(jsonBody, Example.class);
       
