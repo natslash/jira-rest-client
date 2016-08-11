@@ -19,6 +19,10 @@ import org.springframework.http.ResponseEntity;
 public class FileSaveUtility {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FileSaveUtility.class);
+  
+  private FileSaveUtility(){
+    
+  }
 
   /**
    * Downloads a file from a URL
