@@ -1,8 +1,11 @@
 package es.gva.dgtic.jira.issue;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,7 +33,20 @@ public class AttachmentTest {
     Fields fields = gson.fromJson(jData, Fields.class);
     List<Attachment> attList = fields.getAttachment();
     System.out.println(attList.size());
-    assertTrue(attList.size() > 0);
+    Iterator<Attachment> iterator = attList.iterator();
+    
+    while(iterator.hasNext()){
+      Attachment att = iterator.next();
+      
+      assertTrue("Self value is not equal", att.getSelf().length() > 0);
+      assertEquals("sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar", att.getFilename());
+      assertNotNull(att.getAuthor().getName());
+      assertEquals("MimeType is not x-java-archive", "application/x-java-archive", att.getMimeType());
+      assertTrue("Attachment size is zero", att.getSize() > 0);
+      assertTrue("Id is not the same as expected", att.getId().length() > 0);
+      assertTrue(att.getCreated().equals("2016-08-04T09:13:58.000+0200"));
+      assertTrue("content is not the same", att.getContent().equals("https://jira.excentia.es/secure/attachment/41512/sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar"));
+    }
   }
 
 }
