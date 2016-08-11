@@ -14,5 +14,5 @@ public interface ResponseBody {
    * @param response
    * @return json, file
    */
-  Object getResponseObject();
+  Object getResponseBody();
 }

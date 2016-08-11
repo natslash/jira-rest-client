@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                      http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+      <groupId>es.gva.dgtic</groupId>
+      <artifactId>super-pom</artifactId>
+      <version>01.00.00</version>
+    </parent>
+    <description>PTT Clave Frontal</description>
+
+    <organization>
+        <name>GVA</name>
+    </organization>
+
+    <!-- Artifact -->
+    <groupId>es.gva.ptt.clave</groupId>
+    <artifactId>ptt-clave-frontal</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>PTT-Clave-Frontal</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!-- Módulos -->
+        <module>ptt-clave-web-front</module>
+        
+        <!-- Ears -->
+        <module>ptt-clave-web-front-ear</module>
+    </modules>
+</project>
+
+
+

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="request" class="es.gva.dgtic.jira.request.RequestImpl">
-		<constructor-arg value="username" type="java.lang.String" />
-		<constructor-arg value="password" type="java.lang.String" />
+		<constructor-arg value="subramanyam_sha" type="java.lang.String" />
+		<constructor-arg value="dgti2016" type="java.lang.String" />
 	</bean>
 </beans>

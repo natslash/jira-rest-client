@@ -21,6 +21,10 @@ public class JsonResponseBody implements ResponseBody {
 	private ResponseEntity<String> response;
 	private JsonObject jsonObject;
 
+	/**
+	 * Public constructor for JsonResponseBody accepts ResponseEntity as parameter
+	 * @param response
+	 */
 	public JsonResponseBody(ResponseEntity<String> response) {
 		setResponse(response);
 		setJsonObject();
@@ -34,6 +38,9 @@ public class JsonResponseBody implements ResponseBody {
 		return jsonObject;
 	}
 
+	/**
+	 * Gets response Body and creates a JSON object
+	 */
 	public void setJsonObject() {
 		MediaType mediaType = response.getHeaders().getContentType();
 
@@ -60,7 +67,7 @@ public class JsonResponseBody implements ResponseBody {
 	 * Returns JSON object parsed from responseBody accepts only JSON Media type
 	 */
 	@Override
-	public JsonObject getResponseObject() {
+	public JsonObject getResponseBody() {
 		return jsonObject;
 	}
 

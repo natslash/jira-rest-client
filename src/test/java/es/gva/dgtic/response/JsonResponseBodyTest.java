@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 
@@ -26,11 +27,13 @@ public class JsonResponseBodyTest {
     HttpHeaders header = mock(HttpHeaders.class);
     when(response.getBody()).thenReturn(jsonString);
     when(response.getHeaders()).thenReturn(header);
-    when(header.getContentType()).thenReturn(MediaType.APPLICATION_JSON);
+    when(header.getContentType()).thenReturn(MediaType.APPLICATION_JSON_UTF8);
     JsonResponseBody jresp = new JsonResponseBody(response);
-    JsonObject obj = jresp.getResponseObject();
+    JsonObject obj = jresp.getResponseBody();
     JsonObject jData = obj.getAsJsonObject("fields");
+    JsonArray attArray = jData.getAsJsonArray("attachment");
     assertNotNull("Data is null",jData);
+    assertNotNull("Attachment array is null",attArray);
   }
   
   @Test
@@ -42,7 +45,7 @@ public class JsonResponseBodyTest {
     when(response.getHeaders()).thenReturn(header);
     when(header.getContentType()).thenReturn(MediaType.APPLICATION_OCTET_STREAM);
     JsonResponseBody jresp = new JsonResponseBody(response);
-    assertNull("Response is not null", jresp.getResponseObject());
+    assertNull("Response is not null", jresp.getResponseBody());
   }
 
 }
