@@ -46,6 +46,22 @@ public class AttachmentTest {
       assertTrue("Id is not the same as expected", att.getId().length() > 0);
       assertTrue(att.getCreated().equals("2016-08-04T09:13:58.000+0200"));
       assertTrue("content is not the same", att.getContent().equals("https://jira.excentia.es/secure/attachment/41512/sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar"));
+      
+      Author auth = att.getAuthor();
+      auth.setEmailAddress("g@g.com");
+      auth.setKey("123");
+      auth.setName("Shashi");
+      auth.setSelf("new");
+      auth.setTimeZone("CEST");
+      
+      att.setAuthor(auth);
+      att.setContent("content");
+      att.setCreated("creted");
+      att.setFilename("newFile");
+      att.setId("new");
+      att.setMimeType("appliction");
+      att.setSelf("self");
+      att.setSize(1);
     }
   }
 
