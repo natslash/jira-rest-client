@@ -46,7 +46,7 @@ public class Application implements CommandLineRunner {
     AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
     Request request = (Request) context.getBean("request");
     context.close();
-    
+
     // Read from command line argument and set webservice URL
     String webServiceUrl = args[0];
 

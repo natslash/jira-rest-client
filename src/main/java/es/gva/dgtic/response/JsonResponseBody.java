@@ -16,61 +16,59 @@ import com.google.gson.JsonParser;
  */
 public class JsonResponseBody implements ResponseBody {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsonResponseBody.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(JsonResponseBody.class);
 
-	private ResponseEntity<String> response;
-	private JsonObject jsonObject;
+  private ResponseEntity<String> response;
+  private JsonObject jsonObject;
 
-	/**
-	 * Public constructor for JsonResponseBody accepts ResponseEntity as parameter
-	 * @param response
-	 */
-	public JsonResponseBody(ResponseEntity<String> response) {
-		setResponse(response);
-		setJsonObject();
-	}
+  /**
+   * Public constructor for JsonResponseBody accepts ResponseEntity as parameter
+   * 
+   * @param response
+   */
+  public JsonResponseBody(ResponseEntity<String> response) {
+    setResponse(response);
+    setJsonObject();
+  }
 
-	private void setResponse(ResponseEntity<String> response) {
-		this.response = response;
-	}
+  private void setResponse(ResponseEntity<String> response) {
+    this.response = response;
+  }
 
-	public JsonObject getJsonObject() {
-		return jsonObject;
-	}
+  public JsonObject getJsonObject() {
+    return jsonObject;
+  }
 
-	/**
-	 * Gets response Body and creates a JSON object
-	 */
-	private void setJsonObject() {
-		MediaType mediaType = response.getHeaders().getContentType();
+  /**
+   * Gets response Body and creates a JSON object
+   */
+  private void setJsonObject() {
+    MediaType mediaType = response.getHeaders().getContentType();
 
-		// Media type is JSON
-		if (mediaType.equals(MediaType.APPLICATION_JSON_UTF8)) {
-			// Convert response body to JSON object
-			String responseBody = response.getBody().toString();
-			JsonParser parser = new JsonParser();
+    // Media type is JSON
+    if (mediaType.equals(MediaType.APPLICATION_JSON_UTF8)) {
+      // Convert response body to JSON object
+      String responseBody = response.getBody().toString();
+      JsonParser parser = new JsonParser();
 
-			// Create JSON object from the given string
-			jsonObject = (JsonObject) parser.parse(responseBody);
-		}
+      // Create JSON object from the given string
+      jsonObject = (JsonObject) parser.parse(responseBody);
+    }
 
-		else {
-			// The mediatype is not of type JSON
-			LOGGER.info("MediaType: " + response.getHeaders().getContentType()
-					+ " is not supported with the JSON implementation" + "\n"
-					+ "Please use appropriate Response implementation");
-		}
+    else {
+      // The mediatype is not of type JSON
+      LOGGER.info("MediaType: " + response.getHeaders().getContentType() + " is not supported with the JSON implementation" + "\n"
+        + "Please use appropriate Response implementation");
+    }
 
-	}
+  }
 
-	/**
-	 * Returns JSON object parsed from responseBody accepts only JSON Media type
-	 */
-	@Override
-	public JsonObject getResponseBody() {
-		return jsonObject;
-	}
-
-		
+  /**
+   * Returns JSON object parsed from responseBody accepts only JSON Media type
+   */
+  @Override
+  public JsonObject getResponseBody() {
+    return jsonObject;
+  }
 
 }
