@@ -1,6 +1,7 @@
 package es.gva.dgtic.jira.issue;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
@@ -57,4 +58,13 @@ public class AttachmentTest {
     fields.setAttachment(newList);
   }
 
+  @Test
+  public void testAttachmentConstruction(){
+    Attachment att = new Attachment("1", "MyFileName", 1000, "MimeType", "Content");
+    assertNotNull("Id is null", att.getId());
+    assertNotNull("Filename is null", att.getFilename());
+    assertNotNull("MimeType is null", att.getMimeType());
+    assertNotNull("Size is null", att.getSize());
+    assertNotNull("Content is null", att.getContent());
+  }
 }

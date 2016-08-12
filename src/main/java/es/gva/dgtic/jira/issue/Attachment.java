@@ -3,9 +3,11 @@ package es.gva.dgtic.jira.issue;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Attachments list in the issue
+ * 
  * @author shashi
  *
  */
@@ -15,22 +17,46 @@ public class Attachment {
   @SerializedName("id")
   @Expose
   private String id;
-  
+
   @SerializedName("filename")
   @Expose
-  private String filename;  
-  
+  private String filename;
+
   @SerializedName("size")
   @Expose
-  private Integer size;
-  
+  private long size;
+
   @SerializedName("mimeType")
   @Expose
   private String mimeType;
-  
+
   @SerializedName("content")
   @Expose
   private String content;
+
+  /**
+   * No args constructor for use in serialization
+   * 
+   */
+  public Attachment() {
+    //No args for Serialization
+  }
+
+  /**
+   * 
+   * @param content
+   * @param id
+   * @param filename
+   * @param mimeType
+   * @param size
+   */
+  public Attachment(String id, String filename, long size, String mimeType, String content) {
+    setId(id);
+    setFilename(filename);
+    setSize(size);
+    setMimeType(mimeType);
+    setContent(content);
+  }
 
   /**
    * 
@@ -70,7 +96,7 @@ public class Attachment {
    * 
    * @return The size
    */
-  public Integer getSize() {
+  public long getSize() {
     return size;
   }
 
@@ -79,7 +105,7 @@ public class Attachment {
    * @param size
    *          The size
    */
-  public void setSize(Integer size) {
+  public void setSize(long size) {
     this.size = size;
   }
 
@@ -116,4 +142,10 @@ public class Attachment {
   public void setContent(String content) {
     this.content = content;
   }
+
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
+
 }

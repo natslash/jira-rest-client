@@ -56,7 +56,7 @@ public class Application implements CommandLineRunner {
     Request request = (Request) context.getBean("request");
     context.close();
 
-    // Read from command line argument and set webservice URL
+    // Read from command line argument and set web service URL
     String webServiceUrl = args[0];
 
     // Access web service URL and store the response
@@ -68,7 +68,7 @@ public class Application implements CommandLineRunner {
       //Get ResponseBody
       ResponseBody jsonResponse = new JsonResponseBody(response);
       
-      //Get Json object "fields"
+      //Get JSON object "fields"
       JsonObject jsonBody = (JsonObject) jsonResponse.getResponseBody();
       
       Gson gson = new Gson();      
@@ -91,7 +91,7 @@ public class Application implements CommandLineRunner {
         String fileName = attachment.getFilename();
         LOGGER.info(attachment.getFilename());
         
-        //Get Url to dwonload the file
+        //Get URL to download the file
         String fileUrl = attachment.getContent();        
         LOGGER.info(fileUrl);
         
