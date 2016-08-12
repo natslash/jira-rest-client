@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-
-
-
 public class FieldsTest {
 
   @Test
@@ -17,9 +14,9 @@ public class FieldsTest {
     List<Attachment> attList = new ArrayList<>();
     Attachment att = new Attachment("1", "MyFileName", 1000, "MimeType", "Content");
     attList.add(att);
-    
+
     Fields fields = new Fields(attList);
-    
+
     assertNotNull("Attachment is null", fields.getAttachment());
     assertNotNull("toString is null", fields.toString());
   }

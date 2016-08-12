@@ -41,17 +41,17 @@ public class AttachmentTest {
 
     while (iterator.hasNext()) {
       Attachment att = iterator.next();
-      
-      assertEquals("File Names not equal", "sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar", att.getFilename());      
+
+      assertEquals("File Names not equal", "sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar", att.getFilename());
       assertEquals("MimeType is not x-java-archive", "application/x-java-archive", att.getMimeType());
       assertTrue("Attachment size is zero", att.getSize() > 0);
-      assertTrue("Id is not the same as expected", att.getId().length() > 0);      
-      assertTrue("content is not the same",att.getContent().contains("sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar"));
-      
-      att.setContent("content");      
+      assertTrue("Id is not the same as expected", att.getId().length() > 0);
+      assertTrue("content is not the same", att.getContent().contains("sonar-owasp-plugin-2..3.2.1-SNAPSHOT.jar"));
+
+      att.setContent("content");
       att.setFilename("newFile");
       att.setId("new");
-      att.setMimeType("appliction");      
+      att.setMimeType("appliction");
       att.setSize(1);
     }
 
@@ -59,7 +59,7 @@ public class AttachmentTest {
   }
 
   @Test
-  public void testAttachmentConstruction(){
+  public void testAttachmentConstruction() {
     Attachment att = new Attachment("1", "MyFileName", 1000, "MimeType", "Content");
     assertNotNull("Id is null", att.getId());
     assertNotNull("Filename is null", att.getFilename());

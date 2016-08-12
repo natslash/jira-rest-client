@@ -57,10 +57,10 @@ public class Fields {
   public void setAttachment(List<Attachment> attachment) {
     this.attachment = attachment;
   }
-  
+
   @Override
   public String toString() {
-      return ToStringBuilder.reflectionToString(this);
+    return ToStringBuilder.reflectionToString(this);
   }
 
 }
