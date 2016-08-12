@@ -20,7 +20,7 @@ public class FieldsTest {
     
     Fields fields = new Fields(attList);
     
-    assertNotNull(fields.getAttachment());
+    assertNotNull("Attachment is null", fields.getAttachment());
   }
 
 }
