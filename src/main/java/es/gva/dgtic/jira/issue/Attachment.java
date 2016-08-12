@@ -51,11 +51,11 @@ public class Attachment {
    * @param size
    */
   public Attachment(String id, String filename, long size, String mimeType, String content) {
-    setId(id);
-    setFilename(filename);
-    setSize(size);
-    setMimeType(mimeType);
-    setContent(content);
+    this.id = id;
+    this.filename = filename;
+    this.size = size;
+    this.mimeType = mimeType;
+    this.content = content;
   }
 
   /**

@@ -36,9 +36,7 @@ public class Fields {
    * 
    */
   public Fields(List<Attachment> attachment) {
-
-    setAttachment(attachment);
-
+    this.attachment = attachment;
   }
 
   /**
