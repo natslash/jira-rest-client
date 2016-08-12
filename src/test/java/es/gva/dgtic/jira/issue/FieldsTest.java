@@ -21,6 +21,7 @@ public class FieldsTest {
     Fields fields = new Fields(attList);
     
     assertNotNull("Attachment is null", fields.getAttachment());
+    assertNotNull("toString is null", fields.toString());
   }
 
 }

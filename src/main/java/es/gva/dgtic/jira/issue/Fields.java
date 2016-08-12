@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -54,6 +56,11 @@ public class Fields {
    */
   public void setAttachment(List<Attachment> attachment) {
     this.attachment = attachment;
+  }
+  
+  @Override
+  public String toString() {
+      return ToStringBuilder.reflectionToString(this);
   }
 
 }

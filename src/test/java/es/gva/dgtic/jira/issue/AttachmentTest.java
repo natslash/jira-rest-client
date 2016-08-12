@@ -66,5 +66,6 @@ public class AttachmentTest {
     assertNotNull("MimeType is null", att.getMimeType());
     assertNotNull("Size is null", att.getSize());
     assertNotNull("Content is null", att.getContent());
+    assertNotNull("to string is null", att.toString());
   }
 }
